@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="./CSS/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://unpkg.com/flowbite@1.4.0/dist/flowbite.min.css">
+</head>
+<body>
+    
+
+<!-- Navbar -->
+<nav class="bg-[--primarycolor] px-3 py-3 flex justify-between relative">
+  <div class="flex items-center gap-4">
+      <button id="menuButton" class="text-3xl text-white cursor-pointer lg:hidden">
+          <i class="fa-solid fa-bars"></i>
+      </button>
+      <div class="text-white">
+          <a href="index.html">
+              <img class="sm:w-[50px] w-[40px]" src="./Images/logo.png" alt="img">
+          </a>
+      </div>
+  </div>
+  <div class="hidden lg:block relative">
+      <div class="flex items-center">
+          <ul class="flex gap-[2rem] text-white">
+              <li class="text-lg relative py-4 active">
+                  <a href="index.html">Home</a>
+              </li>
+              <li class="text-lg relative py-4">
+                  <a href="./about.html">About</a>
+              </li>
+              <li class="text-lg relative py-4">
+                  <a href="./contact.html">Contact</a>
+              </li>
+          </ul>
+      </div>
+  </div>
+  <div class="flex items-center" id="NavbarSearchDivID">
+      <div class="relative">
+          <input type="text" id="SearchValue" class="px-5 py-3 absolute top-[-50%] right-[-10px]" placeholder="Search....">
+          <button class="text-white" id="NavbarSearchBtn">
+              <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+      </div>
+      <div class="ml-4 sm:w-[100px] w-[80px]">
+        <select class="border border-gray-300 text-gray-900 sm:text-sm text-[12px] rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full sm:p-2.5 p-2">
+          <option selected>Category</option>
+          <option value="US">Motivation</option>
+          <option value="CA">Shayari</option>
+        </select>
+      </div>
+      <div class="ml-4 sm:w-[100px] w-[80px]">
+        <select class="border border-gray-300 text-gray-900 sm:text-sm text-[12px] rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full sm:p-2.5 p-2">
+          <option selected>Language</option>
+          <option value="US">English</option>
+          <option value="CA">हिन्दी</option>
+        </select>
+      </div>
+  </div>
+</nav>
+<div id="sidebar" class="fixed lg:hidden top-0 w-full h-full z-40 bg-[#0000004b] transition-all duration-300 invisible">
+  <div class="relative w-[250px] h-full px-[1rem] py-[6rem] bg-white transition-transform duration-300 transform -translate-x-full SidebarMenu">
+      <button id="closeMenuButton" class="absolute top-[1rem] z-[99] left-[1rem] text-2xl cursor-pointer bg-[#1A4D2E] text-white px-3 py-2">
+          <i class="fa-solid fa-xmark"></i>
+      </button>
+      <div class="flex flex-col">
+          <ul>
+              <li>
+                  <a href="index.html" class="block text-white bg-[#1A4D2E] mb-3 py-2 px-4 w-full rounded-md font-medium hover:bg-[#40679E]">Home</a>
+              </li>
+              <li>
+                  <a href="./about.html" class="block text-white bg-[#1A4D2E] mb-3 py-2 px-4 w-full rounded-md font-medium hover:bg-[#40679E]">About</a>
+              </li>
+              <li>
+                  <a href="./contact.html" class="block text-white bg-[#1A4D2E] mb-3 py-2 px-4 w-full rounded-md font-medium hover:bg-[#40679E]">Contact</a>
+              </li>
+          </ul>
+      </div>
+  </div>
+</div>
+  
+<div class="max-w-2xl m-auto">
+  <div id="default-carousel" class="relative mb-4 mt-4 ml-4" data-carousel="static">
+    <!-- Carousel wrapper -->
+    <div class="overflow-hidden relative h-56 rounded-lg sm:h-64 xl:h-80 2xl:h-96">
+         <!-- Item 1 -->
+        <div class="hidden duration-700 ease-in-out" data-carousel-item>
+            <span class="absolute top-1/2 left-1/2 text-2xl font-semibold text-white -translate-x-1/2 -translate-y-1/2 sm:text-3xl dark:text-gray-800">First Slide</span>
+            <img src="https://flowbite.com/docs/images/carousel/carousel-1.svg" class="block absolute top-1/2 left-1/2 w-full -translate-x-1/2 -translate-y-1/2" alt="...">
+        </div>
+        <!-- Item 2 -->
+        <div class="hidden duration-700 ease-in-out" data-carousel-item>
+            <img src="https://flowbite.com/docs/images/carousel/carousel-2.svg" class="block absolute top-1/2 left-1/2 w-full -translate-x-1/2 -translate-y-1/2" alt="...">
+        </div>
+        <!-- Item 3 -->
+        <div class="hidden duration-700 ease-in-out" data-carousel-item>
+            <img src="https://flowbite.com/docs/images/carousel/carousel-3.svg" class="block absolute top-1/2 left-1/2 w-full -translate-x-1/2 -translate-y-1/2" alt="...">
+        </div>
+    </div>
+    <!-- Slider indicators -->
+    <div class="flex absolute bottom-5 left-1/2 z-30 space-x-3 -translate-x-1/2">
+        <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 1" data-carousel-slide-to="0"></button>
+        <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 2" data-carousel-slide-to="1"></button>
+        <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 3" data-carousel-slide-to="2"></button>
+    </div>
+    <!-- Slider controls -->
+    <button type="button" class="flex absolute top-0 left-0 z-30 justify-center items-center px-4 h-full cursor-pointer group focus:outline-none" data-carousel-prev>
+        <span class="inline-flex justify-center items-center w-8 h-8 rounded-full sm:w-10 sm:h-10 bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+            <svg class="w-5 h-5 text-white sm:w-6 sm:h-6 dark:text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+            <span class="hidden">Previous</span>
+        </span>
+    </button>
+    <button type="button" class="flex absolute top-0 right-0 z-30 justify-center items-center px-4 h-full cursor-pointer group focus:outline-none" data-carousel-next>
+        <span class="inline-flex justify-center items-center w-8 h-8 rounded-full sm:w-10 sm:h-10 bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+            <svg class="w-5 h-5 text-white sm:w-6 sm:h-6 dark:text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+            <span class="hidden">Next</span>
+        </span>
+    </button>
+</div>
+  <p class="ml-4">This carousel component is part of the <a class="text-blue-600 hover:underline" href="https://flowbite.com/docs/components/carousel/" target="_blank">Flowbite component library.</a></p>
+</div>
+  <!-- Footer -->
+    <footer class="bg-white dark:bg-gray-900">
+      <div class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
+          <div class="md:flex md:justify-between">
+          <div class="mb-6 md:mb-0 w-[20%]">
+              <a href="index.html" class="flex items-center">
+                  <img src="./Images/logo.png" class="h-8 me-3" alt="EasyShop Logo" />
+                  <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Inspire Line</span>
+              </a>
+          </div>
+          <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3 w-[100%] sm:w-[60%]">
+              <div>
+                  <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Resources</h2>
+                  <ul class="text-gray-500 dark:text-gray-400 font-medium">
+                      <li class="mb-4">
+                          <a href="https://fontawesome.com/" class="hover:underline">Font Awesome</a>
+                      </li>
+                      <li>
+                          <a href="https://tailwindcss.com/" class="hover:underline">Tailwind CSS</a>
+                      </li>
+                  </ul>
+              </div>
+              <div>
+                  <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Follow us</h2>
+                  <ul class="text-gray-500 dark:text-gray-400 font-medium">
+                      <li class="mb-4">
+                          <a href="https://github.com/Dharam-IN" class="hover:underline ">Github</a>
+                      </li>
+                      <li>
+                          <a href="https://discord.gg/y5q3ReKn" class="hover:underline">Discord</a>
+                      </li>
+                  </ul>
+              </div>
+              <div>
+                  <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Legal</h2>
+                  <ul class="text-gray-500 dark:text-gray-400 font-medium">
+                      <li class="mb-4">
+                          <a href="#" class="hover:underline">Privacy Policy</a>
+                      </li>
+                      <li>
+                          <a href="#" class="hover:underline">Terms &amp; Conditions</a>
+                      </li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+      <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
+      <div class="sm:flex sm:items-center sm:justify-between">
+          <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2024-30 <a href="https://github.com/Dharam-IN" class="hover:underline">Dharam-in</a>. All Rights Reserved.
+          </span>
+          <div class="flex mt-4 gap-4 sm:justify-center sm:mt-0">
+              <a href="https://github.com/Dharam-IN" class="text-gray-500 text-xl hover:text-gray-900 dark:hover:text-white">
+                  <i class="fa-brands fa-github"></i>
+                  <span class="sr-only">Github Account</span>
+              </a>
+              <a href="https://www.linkedin.com/in/dharam-in/" class="text-gray-500 text-xl hover:text-gray-900 dark:hover:text-white">
+                  <i class="fa-brands fa-linkedin"></i>
+                  <span class="sr-only">Linkedin Account</span>
+              </a>
+              <a href="https://twitter.com/Dharam__IN" class="text-gray-500 text-xl hover:text-gray-900 dark:hover:text-white">
+                  <i class="fa-brands fa-x-twitter"></i>
+                  <span class="sr-only">Twitter Account</span>
+              </a>
+          </div>
+      </div>
+      </div>
+  </footer>
+
+
+  <!-- JS -->
+  <script src="./JS/script.js"></script>
+  <script src="https://unpkg.com/flowbite@1.4.0/dist/flowbite.js"></script>
+</body>
+</html>
