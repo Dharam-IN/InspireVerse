@@ -10,7 +10,6 @@ import ThemeBtn from "./ThemeBtn";
 
 const Header = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [showDropdown, setShowDropdown] = useState(false);
   const [showWeHere, setShowWeHere] = useState(false);
 
   const toggleSidebar = () => {
@@ -19,7 +18,7 @@ const Header = () => {
 
   return (
     <>
-      <nav className="sticky top-0 z-50 bg-[#1B3C73] px-3 py-3 flex justify-between items-center dark:bg-red-700">
+      <nav className="sticky top-0 z-50 bg-[#DFD0B8] px-3 py-3 flex justify-between items-center dark:bg-red-700">
         <div className="flex items-center gap-4">
           <IoMenu
             className="text-3xl text-white cursor-pointer lg:hidden"
@@ -34,14 +33,14 @@ const Header = () => {
         <div className="hidden lg:block relative">
           <ul className="flex gap-[2rem] text-white">
             <li className="text-lg relative py-4">
-              <NavLink to="/" className={showDropdown ? "text-[#FF9146]" : ""}>
+              <NavLink to="/" className="text-[#153448] dark:text-[#DFD0B8] font-bold">
                 Home
               </NavLink>
             </li>
             <li className="text-lg relative py-4">
               <NavLink
                 to="/about"
-                className={showDropdown ? "text-[#FF9146]" : ""}
+                className="text-[#153448] dark:text-[#DFD0B8] font-bold"
               >
                 About
               </NavLink>
@@ -49,7 +48,7 @@ const Header = () => {
             <li className="text-lg relative py-4">
               <NavLink
                 to="/create-post"
-                className={showDropdown ? "text-[#FF9146]" : ""}
+                className="text-[#153448] dark:text-[#DFD0B8] font-bold"
               >
                 Create a Post
               </NavLink>
@@ -57,7 +56,7 @@ const Header = () => {
             <li className="text-lg relative py-4">
               <NavLink
                 to="/contact"
-                className={showDropdown ? "text-[#FF9146]" : ""}
+                className="text-[#153448] dark:text-[#DFD0B8] font-bold"
               >
                 Contact
               </NavLink>
