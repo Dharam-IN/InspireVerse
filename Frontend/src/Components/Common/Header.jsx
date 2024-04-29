@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { IoMenu } from "react-icons/io5";
 import { IoMdClose } from "react-icons/io";
 import { Link, NavLink } from "react-router-dom";
@@ -7,18 +7,42 @@ import { FaInstagram, FaFacebookF, FaLinkedinIn } from "react-icons/fa";
 import { IoIosArrowDown } from "react-icons/io";
 import { FaYoutube } from "react-icons/fa";
 import ThemeBtn from "./ThemeBtn";
+import { CgProfile } from "react-icons/cg";
+import { IoLogOutOutline } from "react-icons/io5";
 
 const Header = () => {
+  const dropdownRef = useRef(null);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [showWeHere, setShowWeHere] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
   };
 
+  const toggleDropdown = () => {
+    setDropdownOpen(!dropdownOpen);
+  };
+
+  const handleClickOutside = (event) => {
+    if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setDropdownOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+        document.removeEventListener("mousedown", handleClickOutside);
+    };
+}, []);
+
+
+
+
   return (
     <>
-      <nav className="sticky top-0 z-50 bg-[#DFD0B8] px-3 py-3 flex justify-between items-center dark:bg-red-700">
+      <nav className="sticky top-0 z-30 bg-[#DFD0B8] px-3 py-3 flex justify-between items-center dark:bg-[#153448]">
         <div className="flex items-center gap-4">
           <IoMenu
             className="text-3xl text-white cursor-pointer lg:hidden"
@@ -63,44 +87,39 @@ const Header = () => {
             </li>
           </ul>
         </div>
-        <div className="flex items-center">
-          <ul className="flex gap-[0.5rem] sm:gap-[1rem]">
-            <li className="bg-[#FF9416] p-[5px] md:p-[7px] md:text-xl cursor-pointer border-[#FF9416] border-[2px] hover:bg-transparent rounded-md text-white">
-              <Link
-                to="https://www.instagram.com/upflairs_pvt_ltd/"
-                target="_blank"
-              >
-                <FaInstagram />
-              </Link>
-            </li>
-            <li className="bg-[#FF9416] p-[5px] md:p-[7px] md:text-xl cursor-pointer border-[#FF9416] border-[2px] hover:bg-transparent rounded-md text-white">
-              <Link to="https://www.youtube.com/@upflairs6521" target="_blank">
-                <FaYoutube />
-              </Link>
-            </li>
-            <li className="bg-[#FF9416] p-[5px] md:p-[7px] md:text-xl cursor-pointer border-[#FF9416] border-[2px] hover:bg-transparent rounded-md text-white">
-              <Link
-                to="https://www.linkedin.com/company/upflairs/"
-                target="_blank"
-              >
-                <FaLinkedinIn />
-              </Link>
-            </li>
-            <li>
-              <ThemeBtn/>
-            </li>
-          </ul>
+        <div className="flex items-center gap-4">
+          <div className="flex gap-4 items-center h-full">
+              <div ref={dropdownRef} onClick={toggleDropdown} className="relative">
+                  <div className='bg-white w-10 h-10 flex items-center justify-center rounded-full cursor-pointer'>
+                      {/* <h4 className='text-2xl'>{user && user.name ? user.name.charAt(0) : ""}</h4> */}
+                      <h4 className='text-2xl'>A</h4>
+                  </div>
+                  {dropdownOpen && (
+                      <div className="absolute right-0 mt-2 w-48 bg-[#153448] dark:bg-[#DFD0B8] p-3 rounded-md shadow-lg z-10">
+                          <ul className=''>
+                              <li className='flex items-center gap-2 cursor-pointer font-bold text-[18px] dark:text-[#153448] px-4 py-2 text-white hover:bg-gray-100 dark:hover:bg-[#153448] dark:hover:text-[#DFD0B8] hover:text-[#153448] w-full text-left'>
+                              <CgProfile /> <span>Profile</span>
+                              </li>
+                              <li className='flex items-center gap-2 cursor-pointer font-bold text-[18px] dark:text-[#153448] px-4 py-2 text-white hover:bg-gray-100 dark:hover:bg-[#153448] dark:hover:text-[#DFD0B8] hover:text-[#153448] w-full text-left'>
+                              <IoLogOutOutline /> <span>Logout</span>
+                              </li>
+                          </ul>
+                      </div>
+                  )}
+              </div>
+          </div>  
+          <ThemeBtn/>
         </div>
       </nav>
 
       {/* Sidebar Menu */}
       <div
-        className={`fixed lg:hidden top-0 w-full h-full z-40 bg-[#0000004b] transition-all duration-300 ${
+        className={`fixed lg:hidden top-0 w-full h-full z-50 bg-[#0000004b] transition-all duration-300 ${
           sidebarOpen ? "visible" : "invisible"
         }`}
       >
         <div
-          className={`relative w-[250px] h-full px-[1rem] py-[6rem] bg-white transition-transform duration-300 transform ${
+          className={`relative w-[250px] h-full px-[1rem] py-[6rem] bg-[#DFD0B8] dark:bg-[#153448] transition-transform duration-300 transform ${
             sidebarOpen ? "translate-x-0" : "-translate-x-full"
           }`}
         >
@@ -115,53 +134,32 @@ const Header = () => {
             <li>
               <NavLink
                 to="/"
-                className="block text-white bg-[#003366] mb-3 py-2 px-4 w-full rounded-md font-medium hover:bg-[#40679E]"
+                className="block text-white mb-3 dark:text-[#153448] bg-[#153448] dark:bg-[#DFD0B8] py-2 px-4 w-full rounded-md font-medium hover:bg-[#40679E]"
                 onClick={() => sidebarOpen(false)}
               >
                 Home
               </NavLink>
             </li>
-            <li className=" text-white bg-[#003366] mb-3 py-2 pl-4 pr-2 w-full rounded-md font-medium ">
-              <div className="flex items-center justify-between">
-                <NavLink>We are here</NavLink>
-                <button
-                  className="border-white border-2 p-1"
-                  onClick={() => {
-                    setShowWeHere((val) => !val);
-                  }}
-                >
-                  <IoIosArrowDown />
-                </button>
-              </div>
-              
-            </li>
-            <li className=" text-white bg-[#003366] mb-3 py-2 pl-4 pr-2 w-full rounded-md font-medium ">
-              <div className="flex items-center justify-between">
-                <NavLink to="/courses">Courses</NavLink>
-                <button
-                  className="border-white border-2 p-1"
-                  onClick={() => {
-                    setShowDropdown((val) => !val);
-                  }}
-                >
-                  <IoIosArrowDown />
-                </button>
-              </div>
-            </li>
-            <li>
+            <li className="text-lg relative py-4">
               <NavLink
-                to="https://summers.upflairs.com/"
-                className="block text-white bg-[#003366] mb-3 py-2 px-4 w-full rounded-md font-medium hover:bg-[#40679E]"
-                onClick={() => setSidebarOpen(false)}
+                to="/about"
+                className="text-[#153448] py-2 px-4 dark:text-[#DFD0B8] font-bold"
               >
-                Summer Internship
+                About
               </NavLink>
             </li>
-            <li>
+            <li className="text-lg relative py-4">
+              <NavLink
+                to="/create-post"
+                className="text-[#153448] py-2 px-4 dark:text-[#DFD0B8] font-bold"
+              >
+                Create a Post
+              </NavLink>
+            </li>
+            <li className="text-lg relative py-4">
               <NavLink
                 to="/contact"
-                className="block text-white bg-[#003366] mb-3 py-2 px-4 w-full rounded-md font-medium hover:bg-[#40679E]"
-                onClick={() => setSidebarOpen(false)}
+                className="text-[#153448] py-2 px-4 dark:text-[#DFD0B8] font-bold"
               >
                 Contact
               </NavLink>

@@ -8,6 +8,8 @@ import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } 
 import About from './Pages/About/About.jsx'
 import Contact from './Pages/Contact/Contact.jsx'
 import PrivacyPolicy from './Pages/Privacy-Policy/PrivacyPolicy.jsx'
+import Signup from './Components/Signup.jsx'
+import Login from './Components/Login.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -15,6 +17,8 @@ const router = createBrowserRouter(
       <Route path='/' element={<Home/>}/>
       <Route path='/about' element={<About/>}/>
       <Route path='/contact' element={<Contact/>}/>
+      <Route path='/signup' element={<Signup/>}/>
+      <Route path='/login' element={<Login/>}/>
       <Route path='/privacy-policy' element={<PrivacyPolicy/>}/>
     </Route>
   )

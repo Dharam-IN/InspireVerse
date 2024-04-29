@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import Header from './Components/Common/Header'
 import Footer from './Components/Common/Footer'
 import {Outlet} from 'react-router-dom'
 import { ThemeProvider } from './contexts/themeMode'
+import Header from './Components/Common/Header'
 
 const Layout = () => {
 
