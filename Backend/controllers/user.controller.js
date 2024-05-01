@@ -92,3 +92,34 @@ export const LoginController = async(req, res) => {
     sentToken(isEmail, 200, res, "Login Successfully");
     
 }
+
+export const LogoutController = (req, res, next) => {
+    try {
+        res.status(201).cookie("token", "", {
+            httpOnly: true,
+            expires: new Date(Date.now())
+        }).json({
+            success: true,
+            message: "User Logout Successfully"
+        })
+    } catch (error) {
+        
+    }
+}
+
+
+export const GetUser = async (req, res, next) => {
+    try {
+        const user = req.user;
+        
+        res.status(200).json({
+            success: true,
+            user
+        })
+    } catch (error) {
+        res.status(400).json({
+            success: false,
+            message: "User not find"
+        })
+    }
+}
