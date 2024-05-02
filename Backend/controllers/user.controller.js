@@ -3,6 +3,7 @@ import bcryptjs from 'bcryptjs';
 import { sentToken } from "../utils/jwtUtils.js";
 
 export const RegisterController = async (req, res) =>{
+    console.log(req.body)
     try {
         const {name, email, password, role, phonenumber} = req.body;
     
@@ -50,6 +51,7 @@ export const RegisterController = async (req, res) =>{
 }
 
 export const LoginController = async(req, res) => {
+    console.log(req.body)
     const {email, password, role} = req.body;
 
     if(!email || !password || !role){
@@ -77,7 +79,7 @@ export const LoginController = async(req, res) => {
     if(!passwordMatch){
         return res.status(404).json({
             success: false,
-            message: "Please Fill All Fields - pass"
+            message: "Please Enter valid Details - pass"
         })
     }
     
@@ -88,9 +90,8 @@ export const LoginController = async(req, res) => {
             message: "This Email not match this role"
         })
     }
-
+    console.log("check")
     sentToken(isEmail, 200, res, "Login Successfully");
-    
 }
 
 export const LogoutController = (req, res, next) => {

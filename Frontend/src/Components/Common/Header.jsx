@@ -3,9 +3,6 @@ import { IoMenu } from "react-icons/io5";
 import { IoMdClose } from "react-icons/io";
 import { Link, NavLink } from "react-router-dom";
 import logo from "/logo.png";
-import { FaInstagram, FaFacebookF, FaLinkedinIn } from "react-icons/fa";
-import { IoIosArrowDown } from "react-icons/io";
-import { FaYoutube } from "react-icons/fa";
 import ThemeBtn from "./ThemeBtn";
 import { CgProfile } from "react-icons/cg";
 import { IoLogOutOutline } from "react-icons/io5";
@@ -13,8 +10,9 @@ import { IoLogOutOutline } from "react-icons/io5";
 const Header = () => {
   const dropdownRef = useRef(null);
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [showWeHere, setShowWeHere] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
+
+  const [user, setUser] = useState(false);
 
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
@@ -88,26 +86,37 @@ const Header = () => {
           </ul>
         </div>
         <div className="flex items-center gap-4">
-          <div className="flex gap-4 items-center h-full">
-              <div ref={dropdownRef} onClick={toggleDropdown} className="relative">
-                  <div className='bg-white w-10 h-10 flex items-center justify-center rounded-full cursor-pointer'>
-                      {/* <h4 className='text-2xl'>{user && user.name ? user.name.charAt(0) : ""}</h4> */}
-                      <h4 className='text-2xl'>A</h4>
-                  </div>
-                  {dropdownOpen && (
-                      <div className="absolute right-0 mt-2 w-48 bg-[#153448] dark:bg-[#DFD0B8] p-3 rounded-md shadow-lg z-10">
-                          <ul className=''>
-                              <li className='flex items-center gap-2 cursor-pointer font-bold text-[18px] dark:text-[#153448] px-4 py-2 text-white hover:bg-gray-100 dark:hover:bg-[#153448] dark:hover:text-[#DFD0B8] hover:text-[#153448] w-full text-left'>
-                              <CgProfile /> <span>Profile</span>
-                              </li>
-                              <li className='flex items-center gap-2 cursor-pointer font-bold text-[18px] dark:text-[#153448] px-4 py-2 text-white hover:bg-gray-100 dark:hover:bg-[#153448] dark:hover:text-[#DFD0B8] hover:text-[#153448] w-full text-left'>
-                              <IoLogOutOutline /> <span>Logout</span>
-                              </li>
-                          </ul>
-                      </div>
-                  )}
+          {
+            user ? 
+            <>
+              <div className="flex gap-4 items-center h-full">
+                <div ref={dropdownRef} onClick={toggleDropdown} className="relative">
+                    <div className='bg-white w-10 h-10 flex items-center justify-center rounded-full cursor-pointer'>
+                        {/* <h4 className='text-2xl'>{user && user.name ? user.name.charAt(0) : ""}</h4> */}
+                        <h4 className='text-2xl'>A</h4>
+                    </div>
+                    {dropdownOpen && (
+                        <div className="absolute right-0 mt-2 w-48 bg-[#153448] dark:bg-[#DFD0B8] p-3 rounded-md shadow-lg z-10">
+                            <ul className=''>
+                                <li className='flex items-center gap-2 cursor-pointer font-bold text-[18px] dark:text-[#153448] px-4 py-2 text-white hover:bg-gray-100 dark:hover:bg-[#153448] dark:hover:text-[#DFD0B8] hover:text-[#153448] w-full text-left'>
+                                <CgProfile /> <span>Profile</span>
+                                </li>
+                                <li className='flex items-center gap-2 cursor-pointer font-bold text-[18px] dark:text-[#153448] px-4 py-2 text-white hover:bg-gray-100 dark:hover:bg-[#153448] dark:hover:text-[#DFD0B8] hover:text-[#153448] w-full text-left'>
+                                <IoLogOutOutline /> <span>Logout</span>
+                                </li>
+                            </ul>
+                        </div>
+                    )}
+                </div>
               </div>
-          </div>  
+            </> : 
+            <>
+              <div className="flex gap-4">
+                  <Link to={"/login"} className={`px-4 py-2 rounded-md bg-[#153448] dark:bg-[#DFD0B8] dark:text-[#153448] text-white font-semibold hover:bg-[#d52634ce] focus:outline-none focus:bg-[#D52636]`}>Login</Link>
+                  <Link to={"/signup"} className={`px-4 py-2 rounded-md bg-[#153448] dark:bg-[#DFD0B8] dark:text-[#153448] text-white font-semibold hover:bg-[#d52634ce] focus:outline-none focus:bg-[#D52636]`}>Signup</Link>
+              </div>
+            </>
+          }
           <ThemeBtn/>
         </div>
       </nav>

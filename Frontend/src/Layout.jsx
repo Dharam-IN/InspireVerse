@@ -21,6 +21,10 @@ const Layout = () => {
     document.querySelector('html').classList.add(themeMode);
   }, [themeMode])
 
+  useEffect(() => {
+    
+  }, [])
+
   return (
     <>
         <ThemeProvider value={{themeMode, darkTheme, lightTheme}}>

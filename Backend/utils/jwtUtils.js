@@ -30,5 +30,4 @@ export const sentToken = (user, statusCode, res, message) => {
         message,
         token
     })
-
 }
