@@ -51,7 +51,6 @@ export const RegisterController = async (req, res) =>{
 }
 
 export const LoginController = async(req, res) => {
-    console.log(req.body)
     const {email, password, role} = req.body;
 
     if(!email || !password || !role){
@@ -92,6 +91,7 @@ export const LoginController = async(req, res) => {
     }
     console.log("check")
     sentToken(isEmail, 200, res, "Login Successfully");
+    
 }
 
 export const LogoutController = (req, res, next) => {

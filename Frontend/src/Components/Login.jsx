@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import toast, { Toaster } from 'react-hot-toast';
 import axios from 'axios';
+import { isAuthorizedContext } from '../contexts/UserContext';
 
 const Login = () => {
 
@@ -17,10 +18,14 @@ const Login = () => {
     password: ""
   })
 
+  const navigate = useNavigate()
+
   const updatedata = (e) => {
     const {name, value} = e.target;
     setData({...data,[name]: value})
   }
+
+  const {setisAuthorized, setUser} = useContext(isAuthorizedContext);
 
   const SubmitData = async (e) => {
     e.preventDefault();
@@ -43,9 +48,17 @@ const Login = () => {
     );
 
     console.log(res)
+    if(res.status === 200){
+      toast.success(res.data.message);
+      setData({role: "", email:"", password: ""})
+      setisAuthorized(true)
+      setUser(res.data.user)
+      navigate("/")
+    }
 
     } catch (error) {
       console.log(error)
+      toast.error(error.response.data.message)
     }
 
   }

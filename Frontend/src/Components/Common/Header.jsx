@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useContext } from "react";
 import { IoMenu } from "react-icons/io5";
 import { IoMdClose } from "react-icons/io";
 import { Link, NavLink } from "react-router-dom";
@@ -6,13 +6,14 @@ import logo from "/logo.png";
 import ThemeBtn from "./ThemeBtn";
 import { CgProfile } from "react-icons/cg";
 import { IoLogOutOutline } from "react-icons/io5";
+import { isAuthorizedContext } from "../../contexts/UserContext";
+import axios from "axios";
+import toast, {Toaster} from "react-hot-toast";
 
 const Header = () => {
   const dropdownRef = useRef(null);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
-
-  const [user, setUser] = useState(false);
 
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
@@ -33,10 +34,25 @@ const Header = () => {
     return () => {
         document.removeEventListener("mousedown", handleClickOutside);
     };
-}, []);
+  }, []);
 
+    
+  const {isAuthorized, setisAuthorized, user, setUser} = useContext(isAuthorizedContext);
 
-
+  // Logout
+  const handleLogout = async () => {
+    try {
+      const response = await axios.get(`${import.meta.env.VITE_BACKEND_URI}/api/v1/logout`, {
+        withCredentials: true
+      });
+      console.log(response)
+      toast.success(response.data.message);
+      setUser()
+      setisAuthorized(false)
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   return (
     <>
@@ -87,7 +103,7 @@ const Header = () => {
         </div>
         <div className="flex items-center gap-4">
           {
-            user ? 
+            isAuthorized ? 
             <>
               <div className="flex gap-4 items-center h-full">
                 <div ref={dropdownRef} onClick={toggleDropdown} className="relative">
@@ -101,7 +117,7 @@ const Header = () => {
                                 <li className='flex items-center gap-2 cursor-pointer font-bold text-[18px] dark:text-[#153448] px-4 py-2 text-white hover:bg-gray-100 dark:hover:bg-[#153448] dark:hover:text-[#DFD0B8] hover:text-[#153448] w-full text-left'>
                                 <CgProfile /> <span>Profile</span>
                                 </li>
-                                <li className='flex items-center gap-2 cursor-pointer font-bold text-[18px] dark:text-[#153448] px-4 py-2 text-white hover:bg-gray-100 dark:hover:bg-[#153448] dark:hover:text-[#DFD0B8] hover:text-[#153448] w-full text-left'>
+                                <li className='flex items-center gap-2 cursor-pointer font-bold text-[18px] dark:text-[#153448] px-4 py-2 text-white hover:bg-gray-100 dark:hover:bg-[#153448] dark:hover:text-[#DFD0B8] hover:text-[#153448] w-full text-left' onClick={handleLogout}>
                                 <IoLogOutOutline /> <span>Logout</span>
                                 </li>
                             </ul>
@@ -176,6 +192,7 @@ const Header = () => {
           </ul>
         </div>
       </div>
+      <Toaster/>
   </>
   )
 };

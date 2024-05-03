@@ -10,6 +10,7 @@ import Contact from './Pages/Contact/Contact.jsx'
 import PrivacyPolicy from './Pages/Privacy-Policy/PrivacyPolicy.jsx'
 import Signup from './Components/Signup.jsx'
 import Login from './Components/Login.jsx'
+import { IsAuthorizedContextProvider } from './contexts/UserContext.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -26,6 +27,10 @@ const router = createBrowserRouter(
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <RouterProvider router={router}/>
+    <IsAuthorizedContextProvider>
+      <RouterProvider router={router}>
+        <Layout/>
+      </RouterProvider>
+    </IsAuthorizedContextProvider>
   </React.StrictMode>,
 )
