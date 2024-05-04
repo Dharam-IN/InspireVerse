@@ -1,6 +1,7 @@
 import express from 'express';
 import dotenv from 'dotenv'
 import userRouter from './routes/userRouter.js'
+import postRouter from './routes/postRouter.js'
 import ConnectDB from './db/index.js';
 import cookieParser from 'cookie-parser';
 import cors from 'cors'
@@ -24,7 +25,8 @@ app.use(cookieParser())
 app.use(express.urlencoded({extended: true}))
 
 // Routes
-app.use("/api/v1", userRouter)
+app.use("/api/v1/user", userRouter)
+app.use("/api/v1/post", postRouter)
 
 // DB
 ConnectDB();

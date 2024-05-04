@@ -24,10 +24,6 @@ export const sentToken = (user, statusCode, res, message) => {
         httpOnly :true
     };
 
-    // Log the token and cookie
-    // console.log("Token:", token);
-    // console.log("Cookie:", options);
-
     res.status(statusCode).cookie("token", token, options).json({
         success: true,
         user,

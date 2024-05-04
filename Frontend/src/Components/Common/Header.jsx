@@ -108,8 +108,8 @@ const Header = () => {
               <div className="flex gap-4 items-center h-full">
                 <div ref={dropdownRef} onClick={toggleDropdown} className="relative">
                     <div className='bg-white w-10 h-10 flex items-center justify-center rounded-full cursor-pointer'>
-                        {/* <h4 className='text-2xl'>{user && user.name ? user.name.charAt(0) : ""}</h4> */}
-                        <h4 className='text-2xl'>A</h4>
+                        <h4 className='text-2xl'>{user && user.name ? user.name.charAt(0) : ""}</h4>
+                        {/* <h4 className='text-2xl'>A</h4> */}
                     </div>
                     {dropdownOpen && (
                         <div className="absolute right-0 mt-2 w-48 bg-[#153448] dark:bg-[#DFD0B8] p-3 rounded-md shadow-lg z-10">
