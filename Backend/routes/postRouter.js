@@ -8,4 +8,6 @@ router.post("/post", isAuthenticated, postController)
 
 // Get All Posts
 router.get("/getallposts", getAllPosts)
+
+// Get One Post
 export default router;
