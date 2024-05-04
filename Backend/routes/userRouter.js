@@ -16,4 +16,4 @@ router.get("/logout", isAuthenticated, LogoutController)
 // Get User
 router.get("/getuser", isAuthenticated, GetUser)
 
-export default router;
+export default router;  

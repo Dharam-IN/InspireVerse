@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import toast, { Toaster } from 'react-hot-toast';
 import axios from 'axios'
 
@@ -18,6 +18,9 @@ const Signup = () => {
       phonenumber: "",
       password: ""
     })
+    console.log(data)
+
+    const navigate = useNavigate()
 
     const updatedata = (e) => {
       const {name, value} = e.target;
@@ -29,24 +32,32 @@ const Signup = () => {
 
       const {role, name, email, phonenumber, password} = data;
       if(!role || !name || !email || !phonenumber || !password){
-        return toast.error("Please Fill All Fields")
+        return toast.error("Please Fill All Fieldss")
       }
       
       try {
-        const res = await axios.post(`${BACKENDURI}/api/v1/register`, 
-        {
-          role,name,email,phonenumber,password
-        },
-        {
-          headers: {
-            "Content-Type": "application/type"
+        const res = await axios.post(`${BACKENDURI}/api/v1/user/register`, 
+          {
+            role,name,email,phonenumber,password
           },
-          withCredentials: true
+          {
+            headers: {
+              "Content-Type": "application/json"
+            },
+            withCredentials: true
+          }
+        );
+
+        console.log(res)
+        if(res.status === 200){
+          toast.success(res.data.message);
+          setData({role: "", email:"", password: "", name: "", phonenumber: ""})
+          navigate("/login")
         }
-        
-      );
+
       } catch (error) {
         console.log(error)
+        toast.error(error.response.data.message)
       }
 
     }

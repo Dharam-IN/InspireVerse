@@ -28,12 +28,12 @@ const Layout = () => {
   // USER FETCH
   const {isAuthorized, setisAuthorized, user, setUser} = useContext(isAuthorizedContext);
 
-  console.log(user, isAuthorized)
+  // console.log(user, isAuthorized)
 
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const response = await axios.get(`${import.meta.env.VITE_BACKEND_URI}/api/v1/getuser`,{
+        const response = await axios.get(`${import.meta.env.VITE_BACKEND_URI}/api/v1/user/getuser`,{
           withCredentials: true
         });
 

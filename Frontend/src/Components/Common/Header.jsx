@@ -42,7 +42,7 @@ const Header = () => {
   // Logout
   const handleLogout = async () => {
     try {
-      const response = await axios.get(`${import.meta.env.VITE_BACKEND_URI}/api/v1/logout`, {
+      const response = await axios.get(`${import.meta.env.VITE_BACKEND_URI}/api/v1/user/logout`, {
         withCredentials: true
       });
       console.log(response)

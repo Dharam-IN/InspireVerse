@@ -3,7 +3,7 @@ import bcryptjs from 'bcryptjs';
 import { sentToken } from "../utils/jwtUtils.js";
 
 export const RegisterController = async (req, res) =>{
-    console.log(req.body)
+    // console.log(req.body)
     try {
         const {name, email, password, role, phonenumber} = req.body;
     

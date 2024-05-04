@@ -36,7 +36,7 @@ const Login = () => {
     }
     
     try {
-      const res = await axios.post(`${BACKENDURI}/api/v1/login`, {
+      const res = await axios.post(`${BACKENDURI}/api/v1/user/login`, {
         role,email,password
       },
       {

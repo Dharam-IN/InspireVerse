@@ -29,3 +29,13 @@ export const postController = async (req, res) => {
     }
 
 }
+
+export const getAllPosts =async (req, res) => {
+    try {
+        const quotes = await postModel.find();
+        res.json(quotes)
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Server Error' });
+    }
+}

@@ -11,6 +11,7 @@ import PrivacyPolicy from './Pages/Privacy-Policy/PrivacyPolicy.jsx'
 import Signup from './Components/Signup.jsx'
 import Login from './Components/Login.jsx'
 import { IsAuthorizedContextProvider } from './contexts/UserContext.jsx'
+import CreatePost from './Pages/CreatePost/CreatePost.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -20,6 +21,7 @@ const router = createBrowserRouter(
       <Route path='/contact' element={<Contact/>}/>
       <Route path='/signup' element={<Signup/>}/>
       <Route path='/login' element={<Login/>}/>
+      <Route path='/create-post' element={<CreatePost/>}/>
       <Route path='/privacy-policy' element={<PrivacyPolicy/>}/>
     </Route>
   )
