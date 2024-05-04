@@ -1,5 +1,5 @@
 import axios from 'axios'
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { isAuthorizedContext } from '../../contexts/UserContext';
 import QuoteCard from '../../Components/Common/QuoteCard';
 import HeroSection from '../../Components/Common/HeroSection';
@@ -9,6 +9,8 @@ const Home = () => {
   const BACKENDURI = import.meta.env.VITE_BACKEND_URI;
 
   const {quotesData, setQuotesData} = useContext(isAuthorizedContext)
+  const [uniqueCategories, setUniqueCategories] = useState([])
+
   console.log(quotesData)
   useEffect(() => {
     const FetchUser = async () => {
@@ -20,16 +22,49 @@ const Home = () => {
     FetchUser();
   }, [])
 
+  useEffect(() => {
+    const categories = new Set(quotesData.map(data => data.category));
+    const uniqueCategoriesArray = Array.from(categories)
+    setUniqueCategories(uniqueCategoriesArray)
+  }, [quotesData])
+
   return (
     <>
       {/* Hero Section */}
 
       <HeroSection/>
 
-      <section className='py-5'>
-        <div className="container mx-auto">
-          <div className="flex flex-wrap gap-4">
+      <section className='py-5 dark:bg-[#153448]'>
+        <div className="container mx-auto px-8">
+          <div className="">
+          {/* <div className="flex flex-wrap gap-4"> */}
             {
+              uniqueCategories != [] && uniqueCategories.map((data, index) => {
+                return(
+                  <>
+                    <h2 className='text-3xl font-bold mt-[40px] dark:text-white'>{data}</h2>
+                    <hr className='mb-3 mt-3 bg-[#153448] dark:bg-[#DFD0B8] h-[2px]'/>
+                    <div className="flex flex-wrap gap-4 gap-y-8 justify-between">
+                    {
+                      quotesData.filter((item) => item.category == data).map(filterItems => {
+                        return(
+                          <>
+                            <div className="md:w-[49%]">
+                              <QuoteCard quote={filterItems.quote} author={filterItems.author}/>
+                            </div>
+                          </>
+                        )
+                      })
+                    }
+                    </div>
+                  </>
+                )
+              })
+            }
+            
+            
+            
+            {/* {
               quotesData.map((data) => {
                 return(
                   <>
@@ -39,7 +74,7 @@ const Home = () => {
                   </>
                 )
               })
-            }
+            } */}
           </div>
         </div>
       </section>
