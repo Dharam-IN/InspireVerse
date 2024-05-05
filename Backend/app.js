@@ -13,9 +13,9 @@ dotenv.config();
 
 // Cors Options
 const CorsOptions = {
-    origin: process.env.FRONTEND_URL,
-    credentials: true,
-    optionSuccessStatus: 200
+    origin: ["https://inspire-verse.vercel.app/"],
+    methods: ["POST", "GET", "PUT", "DELETE"],
+    credentials: true
 }
 
 // Middleware
