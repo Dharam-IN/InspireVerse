@@ -1,6 +1,7 @@
 import { UserModel } from "../models/userModel.js";
 import bcryptjs from 'bcryptjs';
 import { sentToken } from "../utils/jwtUtils.js";
+import { postModel } from "../models/postModel.js";
 
 export const RegisterController = async (req, res) =>{
     // console.log(req.body)
@@ -89,7 +90,7 @@ export const LoginController = async(req, res) => {
             message: "This Email not match this role"
         })
     }
-    console.log("check")
+    // console.log("check")
     sentToken(isEmail, 200, res, "Login Successfully");
     
 }
@@ -124,3 +125,22 @@ export const GetUser = async (req, res, next) => {
         })
     }
 }
+
+
+
+// Get My Posts
+export const getMyProfile = async (req, res) => {
+    try {
+        const myProfile = await postModel.find({ postedBy: req.user._id });
+        res.status(200).json({
+            success: true,
+            myProfile
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({
+            success: false,
+            message: "Internal Server Error"
+        });
+    }
+};

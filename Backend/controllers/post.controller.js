@@ -11,13 +11,16 @@ export const postController = async (req, res) => {
                 message: "Please Fill All fields"
             })
         }
+
+        const postedBy = req.user._id;
     
         const postCreate = await postModel.create({
             quote,
             category,
             author,
             subCategory,
-            language
+            language,
+            postedBy
         })
     
         res.status(201).json({
@@ -46,7 +49,6 @@ export const getAllPosts =async (req, res) => {
 
 // Get Single Post
 export const getSinglePost = async (req, res) => {
-    console.log(req.params)
     const {id} = req.params;
     if (!mongoose.Types.ObjectId.isValid(id)) {
         return res.status(400).json({

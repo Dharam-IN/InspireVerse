@@ -115,7 +115,9 @@ const Header = () => {
                         <div className="absolute right-0 mt-2 w-48 bg-[#153448] dark:bg-[#DFD0B8] p-3 rounded-md shadow-lg z-10">
                             <ul className=''>
                                 <li className='flex items-center gap-2 cursor-pointer font-bold text-[18px] dark:text-[#153448] px-4 py-2 text-white hover:bg-gray-100 dark:hover:bg-[#153448] dark:hover:text-[#DFD0B8] hover:text-[#153448] w-full text-left'>
-                                <CgProfile /> <span>Profile</span>
+                                <Link to={"/myprofile"} className="flex w-full items-center gap-2">
+                                  <CgProfile /> <span>Profile</span>
+                                </Link>
                                 </li>
                                 <li className='flex items-center gap-2 cursor-pointer font-bold text-[18px] dark:text-[#153448] px-4 py-2 text-white hover:bg-gray-100 dark:hover:bg-[#153448] dark:hover:text-[#DFD0B8] hover:text-[#153448] w-full text-left' onClick={handleLogout}>
                                 <IoLogOutOutline /> <span>Logout</span>

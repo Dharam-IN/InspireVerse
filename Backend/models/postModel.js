@@ -20,6 +20,15 @@ const postSchema = new mongoose.Schema({
     language: {
         type: String,
         required: true,
+    },
+    postedBy: {
+        type: mongoose.Schema.ObjectId,
+        ref: "UsersData",
+        required: true
+    },
+    postDate:{
+        type: Date,
+        default: Date.now
     }
 })
 

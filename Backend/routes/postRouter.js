@@ -12,4 +12,5 @@ router.get("/getallposts", getAllPosts)
 // Get Single Post
 router.get("/:id", getSinglePost)
 
+
 export default router;
