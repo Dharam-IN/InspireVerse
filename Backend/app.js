@@ -13,7 +13,7 @@ dotenv.config();
 
 // Cors Options
 const CorsOptions = {
-    origin: ["https://inspire-verse.vercel.app/"],
+    origin: ["https://inspire-verse.vercel.app"],
     methods: ["POST", "GET", "PUT", "DELETE"],
     credentials: true
 }
