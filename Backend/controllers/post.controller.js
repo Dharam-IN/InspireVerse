@@ -123,3 +123,52 @@ export const deletePost = async (req, res) => {
         });
     }
 };
+
+
+
+// Update Post
+export const updatePost = async (req, res) => {
+    try {
+        // Extract user role from request
+        const { role } = req.user;
+
+        // Check if user role is authorized to delete posts
+        if (role === "User") {
+            return res.status(401).json({
+                success: false,
+                message: "Unauthorized access: User role not allowed to delete posts."
+            });
+        }
+
+        // Extract post ID from request parameters
+        const { id } = req.params;
+
+        // Find the post by ID
+        let post = await postModel.findById(id);
+        if (!post) {
+            return res.status(404).json({
+                success: false,
+                message: "Post not found."
+            });
+        }
+
+        post = await postModel.findByIdAndUpdate(id, req.body, {
+            new: true,
+            runValidators: true,
+            useFindAndModify: false
+        })
+
+        res.status(200).json({
+            success: true,
+            message: "Post Updated"
+        })
+
+    } catch (error) {
+        // Handle unexpected errors
+        console.error("Error deleting post:", error);
+        res.status(500).json({
+            success: false,
+            message: "Internal server error."
+        });
+    }
+}

@@ -33,8 +33,8 @@ const MyProfile = () => {
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
 
-  console.log(myProfile)
-  console.log(user)
+  // console.log(myProfile)
+  // console.log(user)
 
   return (
     <>
@@ -95,7 +95,7 @@ const MyProfile = () => {
                 <div className="grid gap-8 lg:grid-cols-2">
                     {myProfile.map((data) => {
                       return(
-                        <PostCard category={data.category} date={data.postDate} quote={data.quote} posturl={data._id} user={user.name} />
+                        <PostCard key={data._id} category={data.category} date={data.postDate} quote={data.quote} posturl={data._id} postAllData={data} user={data.author} />
                       )
                     })}
                 </div>  
