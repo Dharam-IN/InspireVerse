@@ -1,3 +1,4 @@
+import mongoose from "mongoose";
 import { postModel } from "../models/postModel.js";
 
 export const postController = async (req, res) => {
@@ -30,6 +31,8 @@ export const postController = async (req, res) => {
 
 }
 
+
+// Get All Posts
 export const getAllPosts =async (req, res) => {
     try {
         const quotes = await postModel.find();
@@ -37,5 +40,36 @@ export const getAllPosts =async (req, res) => {
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: 'Server Error' });
+    }
+}
+
+
+// Get Single Post
+export const getSinglePost = async (req, res) => {
+    console.log(req.params)
+    const {id} = req.params;
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+        return res.status(400).json({
+            success: false,
+            message: "Invalid post ID"
+        });
+    }
+
+    try {
+        const post = await postModel.findById(id);
+        if(!post){
+            return res.status(404).json({
+                success: false,
+                message: "Post Not Found"
+            })
+        }
+
+        res.status(200).json({
+            success: true,
+            post
+        })
+
+    } catch (error) {
+        console.log(error)
     }
 }

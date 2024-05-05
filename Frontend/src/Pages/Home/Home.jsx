@@ -50,7 +50,7 @@ const Home = () => {
                         return(
                           <>
                             <div className="md:w-[49%]">
-                              <QuoteCard quote={filterItems.quote} author={filterItems.author}/>
+                              <QuoteCard quote={filterItems.quote} author={filterItems.author} postUrl={filterItems._id}/>
                             </div>
                           </>
                         )

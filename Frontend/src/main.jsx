@@ -12,6 +12,8 @@ import Signup from './Components/Signup.jsx'
 import Login from './Components/Login.jsx'
 import { IsAuthorizedContextProvider } from './contexts/UserContext.jsx'
 import CreatePost from './Pages/CreatePost/CreatePost.jsx'
+import MyProfile from './Components/Common/MyProfile.jsx'
+import PostDetail from './Components/Common/PostDetail.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -23,6 +25,8 @@ const router = createBrowserRouter(
       <Route path='/login' element={<Login/>}/>
       <Route path='/create-post' element={<CreatePost/>}/>
       <Route path='/privacy-policy' element={<PrivacyPolicy/>}/>
+      <Route path='/profile' element={<MyProfile/>}/>
+      <Route path='/post-detail/:id' element={<PostDetail/>}/>
     </Route>
   )
 )
