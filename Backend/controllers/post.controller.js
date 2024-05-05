@@ -75,3 +75,51 @@ export const getSinglePost = async (req, res) => {
         console.log(error)
     }
 }
+
+
+
+// Delete Post
+export const deletePost = async (req, res) => {
+    try {
+        // Extract user role from request
+        const { role } = req.user;
+
+        // Check if user role is authorized to delete posts
+        if (role === "User") {
+            return res.status(401).json({
+                success: false,
+                message: "Unauthorized access: User role not allowed to delete posts."
+            });
+        }
+
+        // Extract post ID from request parameters
+        const { id } = req.params;
+
+        // Find the post by ID
+        const post = await postModel.findById(id);
+
+        // If post not found, return error response
+        if (!post) {
+            return res.status(404).json({
+                success: false,
+                message: "Post not found."
+            });
+        }
+
+        // Delete the post
+        await post.deleteOne();
+
+        // Respond with success message
+        res.status(200).json({
+            success: true,
+            message: "Post deleted successfully."
+        });
+    } catch (error) {
+        // Handle unexpected errors
+        console.error("Error deleting post:", error);
+        res.status(500).json({
+            success: false,
+            message: "Internal server error."
+        });
+    }
+};

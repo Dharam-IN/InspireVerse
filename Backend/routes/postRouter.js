@@ -1,5 +1,5 @@
 import express from 'express';
-import { getAllPosts, getSinglePost, postController } from '../controllers/post.controller.js';
+import { deletePost, getAllPosts, getSinglePost, postController } from '../controllers/post.controller.js';
 import { isAuthenticated } from '../middlewares/auth.js';
 const router = express.Router();
 
@@ -12,5 +12,7 @@ router.get("/getallposts", getAllPosts)
 // Get Single Post
 router.get("/:id", getSinglePost)
 
+// Delete Post
+router.delete("/delete/:id", isAuthenticated, deletePost)
 
 export default router;

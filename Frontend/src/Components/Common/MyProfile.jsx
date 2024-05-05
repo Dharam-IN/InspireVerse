@@ -95,7 +95,7 @@ const MyProfile = () => {
                 <div className="grid gap-8 lg:grid-cols-2">
                     {myProfile.map((data) => {
                       return(
-                        <PostCard category={data.category} date={data.postDate} quote={data.quote} user={user.name} />
+                        <PostCard category={data.category} date={data.postDate} quote={data.quote} posturl={data._id} user={user.name} />
                       )
                     })}
                 </div>  
